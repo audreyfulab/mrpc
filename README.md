@@ -11,24 +11,15 @@ with the principle of Mendelian randomization. Frontiers in Genetics. 10:460.
 
 ## Installation
 
-### 1. Installation of the most recent version from GitHub.
+### 1. Installation of the current, released version from CRAN.
 
-First install the R package devtools available on CRAN, if it is not already installed. This package provides function `install_github()` that enables installing packages directly from github with the following command.
+Official releases are available on CRAN.  To install, run the following command line in R:
+```
+R> install.packages ("MRPC")
+```
+This line will tell you what other R packages (the "dependencies") you need to install before installing MRPC. 
 
-Invoke R and then type with the following command:
-```
-R> install.packages ("devtools")
-R> library (devtools)
-# install R packages that MRPC depends on before running the next line 
-# see details below
-R> install_github ("audreyqyfu/mrpc")
-```
-MRPC depends on several R packages from CRAN and from Bioconductor.  It is likely that some of these packages are not installed on your computer.  If the R package is available on CRAN, you may use the following command line for installation (change _packagename_ to the name of the package to be installed, e.g, bnlearn, pcalg, etc.) before running function `install_github`:
-```
-R> install.packages ("packagename")
-```
-
-The following Bioconductor packages also need to be installed before running function `install_github` or `install.packages`:
+We have found that it may be easier to first install the following R packages from Bioconductors:
 ```
 R> if (!requireNamespace ("BiocManager", quietly = TRUE))
     install.packages ("BiocManager")
@@ -40,6 +31,17 @@ R> BiocManager::install ('preprocessCore')
 R> BiocManager::install ('RBGL')
 R> BiocManager::install ('Rgraphviz')
 ```
+
+For the dependencies available on CRAN, you may use the following command line for installation (change _packagename_ to the name of the package to be installed, e.g, bnlearn, pcalg, etc.) :
+```
+R> install.packages ("packagename")
+```
+
+Once these packages are installed, run the following line again to install MRPC:
+```
+R> install.packages ("MRPC")
+```
+
 ### 2. Installation from the source of a released package.
 
 Download the package source MRPC_xxx.tar.gz.  
@@ -53,12 +55,20 @@ Alternatively, you may also run the following command line in R, after changing 
 ```
 R> install.packages ("MRPC_xxx.tar.gz", repos = NULL, type="source")
 ```
-### 3. Installation from CRAN.
+### 3. Installation from GitHub.
 
-Official releases are available on CRAN.  To install,
+First install the R package devtools available on CRAN, if it is not already installed. This package provides function `install_github()` that enables installing packages directly from github with the following command.
+
+Invoke R and then type with the following command:
 ```
-R> install.packages ("MRPC")
+R> install.packages ("devtools")
+R> library (devtools)
+# install R packages that MRPC depends on before running the next line 
+# see details below
+R> install_github ("audreyfulab/mrpc")
 ```
+Again, this will show what dependencies you need to install before installing MRPC.
+
 ## Using MRPC
 After installation, load the MRPC package into R:
 ```
