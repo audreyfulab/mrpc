@@ -4,7 +4,10 @@
 \title{Comparison of inference accuracy using the same data but with different node orderings.}
 
 \description{
-Investigate the performance of five methods on the same data but with different node orderings: \link{MRPC} (Badsha and Fu, 2019; Badsha et al., 2021), \link{pc}, implemented in \code{pcalg} (Kalisch et al., 2012), and \link{pc.stable}, \link{mmpc}, \link{mmhc}, and \link{hc}, the last four all implemented in \code{bnlearn} (Scutari, 2010). See details in Badsha et al.(2021).
+Investigate the performance of five methods on the same data but with different node orderings: 
+\code{MRPC} (Badsha and Fu, 2019; Badsha et al., 2021), \code{pc}, implemented in the \code{pcalg} package
+(Kalisch et al., 2012), and \code{pc.stable}, \code{mmpc}, \code{mmhc}, and \code{hc}, the last 
+four all implemented in the \code{bnlearn} package (Scutari, 2010). See details in Badsha et al.(2021).
 }
 \usage{
 CompareMethodsNodeOrdering(N, signal, model, n_data, n_nodeordering)
