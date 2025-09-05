@@ -9,6 +9,8 @@ with the principle of Mendelian randomization. Frontiers in Genetics. 10:460.
 
 2. Md. Bahadur Badsha, Evan A Martin, Audrey Qiuyan Fu (2021) MRPC: An R package for inference of causal graphs.  Frontiers in Genetics. 12:651812.
 
+3. Kvamme, J., Badsha, M. B., Martin, E. A., Wu, J., Wang, X., & Fu, A. Q. (2025). Causal network inference of cis-and trans-gene regulation of expression quantitative trait loci across human tissues. Genetics, 230(2), iyaf064.
+
 ## Installation
 
 ### 1. Installation of the current, released version from CRAN.
