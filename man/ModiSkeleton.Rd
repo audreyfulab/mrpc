@@ -5,7 +5,13 @@
 Infer a graph skeleton (undirected graph)
 }
 \description{
-This function implements the MRPC algorithm in Badsha and Fu (2019) and Badsha et al. (2021) to infers a graph skeleton (i.e., an undirected graph). It is based on the function \link{skeleton} from the \code{pcalg} package (Kalisch et al., 2012). Both functions perform marginal and conditional indpenendence tests. However, \code{ModiSkeleton} implements an online false discovery rate (FDR) control method in order to control the overall FDR, whereas \link{skeleton} controls only the type I error rate for each individual test. See details below.
+This function implements the MRPC algorithm in Badsha and Fu (2019) 
+and Badsha et al. (2021) to infers a graph skeleton (i.e., an undirected graph). 
+It is based on the function \link[pcalg]{skeleton} from the \code{pcalg} package 
+(Kalisch et al., 2012). Both functions perform marginal and conditional 
+indpenendence tests. However, \code{ModiSkeleton} implements an online false 
+discovery rate (FDR) control method in order to control the overall FDR, whereas 
+\link[pcalg]{skeleton} controls only the type I error rate for each individual test. 
 }
 \usage{
 ModiSkeleton(data, suffStat, FDR, alpha, indepTest, labels, p,
@@ -16,10 +22,16 @@ ModiSkeleton(data, suffStat, FDR, alpha, indepTest, labels, p,
 }
 
 \arguments{
-Many arguments are similar to those in \link{skeleton} and \link{pc} in the \code{pcalg} package. Several arguments here are also arguments for the function \link{MRPC}.
+Many arguments are similar to those in \link[pcalg]{skeleton} and \link[pcalg]{pc} 
+in the \code{pcalg} package. Several arguments here are also arguments for the 
+function \link{MRPC}.
 
 \item{data}{
-Data matrix, where the rows are samples and the columns are features (e.g., genetic variants (GVs) and phenotypes). Columns are for GVs, if available, appear before other columns for phenotypes (e.g., gene expression). For example, if there is one GV, then the first column of the data matrix is the GV and the remaining columns are the gene expression data.
+Data matrix, where the rows are samples and the columns are features 
+(e.g., genetic variants (GVs) and phenotypes). Columns are for GVs, if available, 
+appear before other columns for phenotypes (e.g., gene expression). For example, 
+if there is one GV, then the first column of the data matrix is the GV and the 
+remaining columns are the gene expression data.
 }
 
 \item{suffStat}{A list of sufficient statistics. When the data is continuous or can be viewed as continuous, this list contains the correlation matrix of the data and the sample size, which are the necessary elements for the conditional independence tests in gaussCItest. When the data is discrete, this list contains the entire dataset.  
@@ -30,9 +42,17 @@ Desired overall FDR level.
 }
 \item{alpha}{significance level (number in (0,1) for the individual tests.}
 
-\item{indepTest}{Name of the statistical test. It is used to test the independence of x and y given S, where x and y are variables and S is a vector, possibly empty, of variables. The return value of indepTest is the p-value of the test for conditional independence.  Different tests may used for different data types. For example, \code{indepTest='gaussCItest'} for Gaussian data, \code{indepTest='disCItest'} for discrete data, and \code{indepTest='binCItest'} for binary data. See additional details in help(gaussCItest).
+\item{indepTest}{Name of the statistical test. It is used to test the independence of x 
+and y given S, where x and y are variables and S is a vector, possibly empty, of variables. 
+The return value of indepTest is the p-value of the test for conditional independence.  
+Different tests may used for different data types. For example, \code{indepTest='gaussCItest'} 
+for Gaussian data, \code{indepTest='disCItest'} for discrete data, and \code{indepTest='binCItest'} 
+for binary data. 
 
-\link{ci.test} in the \code{bnlearn} package (Marco Scutari, 2010) may also be used for testing conditional independence and return a p-value. The default test statistic is the mutual information for categorical variables, the Jonckheere-Terpstra test for ordered factors and the linear correlation for continuous variables. See help(ci.test).
+\link[bnlearn]{ci.test} in the \code{bnlearn} package (Marco Scutari, 2010) may 
+also be used for testing conditional independence and return a p-value. The default test 
+statistic is the mutual information for categorical variables, the Jonckheere-Terpstra test 
+for ordered factors and the linear correlation for continuous variables. 
 }
 
 \item{labels}{A character vector of names of variables (nodes). These are typically the column names of the data matrix.}
@@ -93,7 +113,7 @@ An object containing an estimate of the skeleton of the underlying DAG as follow
     , where the (i, j)th entry contains the 
     maximum p-value of all conditional
     independence tests for edge i--j.}
-    \item{\code{graph}:}{Object of class \code{"\linkS4class{graph}"}:
+    \item{\code{graph}:}{Object of class \code{"\link[graph:graph-class]{graph}"}:
       The undirected or partially directed graph that was estimated.}
           \item{\code{zMin}:}{Deprecated.}
     \item{\code{test}:}{The number of tests that have been performed.}

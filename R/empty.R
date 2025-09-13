@@ -1,3 +1,4 @@
+#' @export
 #Check if a data frame is empty
 
 empty <- function (df)

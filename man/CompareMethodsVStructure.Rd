@@ -2,10 +2,15 @@
 \alias{CompareMethodsVStructure}
 
 \title{
-Comparison of inference accuracy of different methods on data with and without a v-structure
+Comparison of inference accuracy of different methods on 
+data with and without a v-structure
 }
 \description{
-This function compares inference accuracy on graphs with and without a v-structure in terms of recall and precision by six methods \link{MRPC}, \link{pc}, \link{pc.stable}, \link{mmpc}, \link{mmhc}, and \link{hc}, across multiple data sets. See details in Badsha and Fu (2019) and Badsha et al.(2021).
+This function compares inference accuracy on graphs with 
+and without a v-structure in terms of recall and precision 
+by six methods \code{MRPC}, \code{pc}, \code{pc.stable}, 
+\code{mmpc}, \code{mmhc}, and \code{hc}, across multiple 
+data sets. See details in Badsha and Fu (2019) and Badsha et al.(2021).
 }
 \usage{
 CompareMethodsVStructure(N, signal, model, includeGV, ita)

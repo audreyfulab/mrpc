@@ -1,3 +1,4 @@
+#' @exportClass MRPCclass
 setClass("MRPCclass",
          slots = c(call = "call",
                    n = "integer",
@@ -23,12 +24,15 @@ setClass("MRPCclass",
                    gammai = "numeric",
                    gammai_sum = "numeric"))
 
-##' auxiliary, hidden
+# auxiliary, hidden
+#' @noRd
+#' @keywords internal
 show.MRPC.amat <- function(amat, zero.print, ...) {
   cat("\nAdjacency Matrix G:\n")
   print.table(amat, zero.print=zero.print, ...)
 }
 
+#' @export
 setMethod("summary", "MRPCclass",
           function(object, amat = TRUE, zero.print = ".", ...) {
             cat("Object of class 'MRPCclass', from Call:\n",
@@ -49,32 +53,39 @@ setMethod("summary", "MRPCclass",
               show.MRPC.amat(as(g, "matrix"), zero.print=zero.print)
           })
 
-print.MRPCclass <- function(x, amat = FALSE, zero.print = ".", ...) {
-  cat("Object of class 'MRPCclass', from Call:\n",
-      paste(deparse(x@call), sep = "\n", collapse = "\n"),
-      "\n", sep="")
-  A <- as(x@graph, "matrix")
-  if(amat)
-    show.MRPC.amat(A, zero.print=zero.print, ...)
-  amat2 <- A + 2*t(A)
-  ude <- sum(amat2 == 3)/2
-  de <- sum(amat2 == 1)
-  cat("Number of undirected edges: ", ude, "\n")
-  cat("Number of directed edges:   ", de, "\n")
-  cat("Total number of edges:      ", de + ude, "\n")
-  invisible(x)
-}
-setMethod("show", "MRPCclass", function(object) print.MRPCclass(object))
+#' @export
+setMethod("print", signature(x = "MRPCclass"),
+          function(x, amat = FALSE, zero.print = ".", ...) {
+            cat("Object of class 'MRPCclass', from Call:\n",
+                paste(deparse(x@call), sep = "\n", collapse = "\n"),
+                "\n", sep="")
+            A <- as(x@graph, "matrix")
+            if (amat)
+              show.MRPC.amat(A, zero.print=zero.print, ...)
+            amat2 <- A + 2 * t(A)
+            ude <- sum(amat2 == 3)/2
+            de <- sum(amat2 == 1)
+            cat("Number of undirected edges: ", ude, "\n")
+            cat("Number of directed edges:   ", de, "\n")
+            cat("Total number of edges:      ", de + ude, "\n")
+            invisible(x)
+          })
 
+setMethod("show", "MRPCclass", function(object) print(object))
 
+#' @export
 setMethod("plot", signature(x = "MRPCclass"),
           function(x, y, main = NULL, zvalue.lwd = FALSE,
                    lwd.max = 7, labels = NULL, ...)
           {
             #check.Rgraphviz()
             
-            if(is.null(main))
-              main <- deparse(x@call)
+            if (is.null(main)) {
+              main <- paste(deparse(x@call), collapse = "")
+            } else {
+              main <- as.character(main)[1L]  # force length to be 1
+            }
+
             attrs <- nodeAttrs <- list()
             p <- numNodes(G <- x@graph)
             if (!is.null(labels)) {

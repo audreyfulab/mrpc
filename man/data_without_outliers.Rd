@@ -5,7 +5,10 @@
 Example data without outliers
 }
 \description{
-The data contain two genotype nodes, V1 and V2, and three phenotype nodes, T1, T2 and T3. The code below compares the performance of \link{MRPC}, \link{pc} \link{pc.stable}, \link{mmpc}, \link{mmhc}, and \link{hc} on this data set.
+The data contain two genotype nodes, V1 and V2, and three phenotype nodes, 
+T1, T2 and T3. The code below 
+compares the performance of \link{MRPC}, \link[pcalg]{pc}, \link[bnlearn]{pc.stable}, 
+\link[bnlearn]{mmpc}, \link[bnlearn]{mmhc}, and \link[bnlearn]{hc} on this data set.
 
 }
 

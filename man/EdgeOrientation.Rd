@@ -5,7 +5,15 @@
 Perform edge orientation under the MRPC algorithm
 }
 \description{
-This function performs the second step of the \link{MRPC} algorithm where it determines the edge direction in the graph skeleton inferred by the function \link{ModiSkeleton}. If the data contain genetic variants, this function first determines the edges between genetic variants and phenotype nodes based on the principle of Mendelian randomization. Next it identifies potential v-structures and orients the edges in them. For the remaining edges, it examines triplets in turn to see whether a triplet is compatible with one of the basic models. See the references for details.
+This function performs the second step of the \code{MRPC} algorithm 
+where it determines the edge direction in the graph skeleton inferred 
+by the function \link{ModiSkeleton}. If the data contain genetic variants, 
+this function first determines the edges between genetic variants and 
+phenotype nodes based on the principle of Mendelian randomization. 
+Next it identifies potential v-structures and orients the edges in them. 
+For the remaining edges, it examines triplets in turn to see whether 
+a triplet is compatible with one of the basic models. See the references 
+for details.
 }
 \usage{
 EdgeOrientation(gInput, GV, suffStat, FDR, alpha, indepTest, 
@@ -27,7 +35,7 @@ False discovery rate (number between 0 and 1). If FDR = 0.05, this ensures that 
                 
 \item{alpha}{Significance level (number in (0,1) for the individual tests.}
 
-\item{indepTest}{A \link{function} for testing conditional independence. It is used to test the conditional independence of x and y given S, called as indepTest(x, y, S, suffStat). Where, x and y are variables, and S is a vector, possibly empty, of variables. suffStat is a list, see the argument above. The return value of indepTest is the p-value of the test for conditional independence. There are three options for different data types, for example, Gaussian data = gaussCItest, discrete data = disCItest and Binary data = binCItest. See help(gaussCItest)}
+\item{indepTest}{A function for testing conditional independence. It is used to test the conditional independence of x and y given S, called as indepTest(x, y, S, suffStat). Where, x and y are variables, and S is a vector, possibly empty, of variables. suffStat is a list, see the argument above. The return value of indepTest is the p-value of the test for conditional independence. There are three options for different data types, for example, Gaussian data = gaussCItest, discrete data = disCItest and Binary data = binCItest. See help(gaussCItest)}
 
 \item{FDRcontrol}{A character string specifying whether online FDR control should be applied, and if so, what method to use. The two FDR control options are "LOND" (Javanmard and Montanari, 2015) or "ADDIS" (Tian and Ramdas, 2019). If "NONE" is specified, the type I error rate "alpha" will be used for each test.}
 
@@ -57,7 +65,7 @@ The four cases are as follows:
 An object that contains an estimate of the equivalence class of the underlying DAG.
 \describe{
     
-    \item{\code{call}:}{A \link{call} object: the original function call.}
+    \item{\code{call}:}{A call object: the original function call.}
     
     \item{\code{n}:}{The sample 
     size used to estimate the graph.}
@@ -73,7 +81,7 @@ An object that contains an estimate of the equivalence class of the underlying D
     , where the (i, j)th entry contains the 
     maximal p-value of all conditional
     independence tests for edge i--j.}
-    \item{\code{graph}:}{An object of class \code{"\linkS4class{graph}"}:
+    \item{\code{graph}:}{An object of class \code{"\link[graph:graph-class]{graph}"}:
       The undirected or partially directed graph that was estimated.}
           \item{\code{zMin}:}{Deprecated.}
     \item{\code{test}:}{The number of tests that have been performed.}

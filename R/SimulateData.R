@@ -1,4 +1,4 @@
-
+#' @export
 # N, b0.1 and sd.1 are the parameters to simulate data for no parent.
 # Likewise N, b0.1, b1.1 and sd.1 are the parameters to simulate data for one parent.
 # Likewise N, b0.1, b1.1,b1.2 and sd.1 are the parameters to simulate data for two parents.

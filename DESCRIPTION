@@ -1,6 +1,7 @@
+Encoding: UTF-8
 Package: MRPC
 Type: Package
-Version: 3.1.1
+Version: 3.2.0
 Date: 2025-09-04
 Title: PC Algorithm with the Principle of Mendelian Randomization
 Authors@R: c(person(given = c("Md", "Bahadur"),
@@ -17,10 +18,13 @@ Description: A PC Algorithm with the Principle of Mendelian Randomization. This 
             (PC with the principle of Mendelian randomization) algorithm to infer causal graphs. It also 
             contains functions to simulate data under a certain topology, to visualize a graph in different 
             ways, and to compare graphs and quantify the differences. 
-            See Badsha and Fu (2019) <doi:10.3389/fgene.2019.00460>,Badsha, Martin and Fu (2021) <doi:10.3389/fgene.2021.651812>. 
+            See Badsha and Fu (2019) <doi:10.3389/fgene.2019.00460>,
+            Badsha, Martin and Fu (2021) <doi:10.3389/fgene.2021.651812>,
+            Kvamme and Badsha, et al. (2025) <doi:10.1093/genetics/iyaf064>.
 License: GPL (>= 2)
 Depends: R (>= 4.0)
 LazyData: TRUE
-Imports:bnlearn,compositions,dynamicTreeCut,GGally,fastcluster,gtools,graph,graphics,Hmisc,methods,mice,
-        network,pcalg,psych,Rgraphviz,stats,sna,utils,WGCNA,plyr
+Imports: bnlearn,compositions,dynamicTreeCut,GGally,fastcluster,gtools,graph,graphics,Hmisc,methods,mice,
+        network,pcalg,psych,Rgraphviz,stats,utils,WGCNA,plyr
 NeedsCompilation: no
+RoxygenNote: 7.3.3

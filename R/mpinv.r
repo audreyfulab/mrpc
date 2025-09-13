@@ -1,3 +1,4 @@
+#' @export
 mpinv <- function(X)
 {
 # Moore-Penrose inverse

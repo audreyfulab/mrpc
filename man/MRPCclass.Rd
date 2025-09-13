@@ -5,15 +5,16 @@
 \alias{plot,MRPCclass,ANY-method}
 \alias{show,MRPCclass-method}
 \alias{summary,MRPCclass-method}
-\alias{print.MRPCclass}
+\alias{print,MRPCclass-method}
 \description{This class of objects is returned by the functions
-  \code{\link{ModiSkeleton}} and \code{\link{MRPC}} to represent the (ModiSkeleton) of an estimated DAG similarly from \code{\link{pcAlgo-class}}. Objects of this class have methods for the functions plot, show and
-summary.
+  \link{ModiSkeleton} and \link{MRPC} to represent the (ModiSkeleton) of 
+  an estimated DAG similarly from \link[pcalg:pcAlgo-class]{pcAlgo}. Objects of this class 
+  have methods for the functions plot, show and summary.
 }
 \usage{% usage ..for methods with "surprising arguments":
 \S4method{plot}{MRPCclass,ANY}(x, y, main = NULL,
      zvalue.lwd = FALSE, lwd.max = 7, labels = NULL, \dots)
-\S3method{print}{MRPCclass}(x, amat = FALSE, zero.print = ".", \dots)
+\S4method{print}{MRPCclass}(x, amat = FALSE, zero.print = ".", \dots)
 
 \S4method{summary}{MRPCclass}(object, amat = TRUE, zero.print = ".", \dots)
 \S4method{show}{MRPCclass}(object)
@@ -27,7 +28,7 @@ summary.
     of matrix \code{zMin} (originally) or derived from matrix \code{pMax}.}
   \item{lwd.max}{maximal \code{lwd} to be used, if \code{zvalue.lwd} is true.}
   \item{labels}{if non-\code{NULL}, these are used to define node attributes
-    \code{nodeAttrs} and \code{attrs}, passed to \code{\link[Rgraphviz]{agopen}()}
+    \code{nodeAttrs} and \code{attrs}, passed to \link[Rgraphviz]{agopen}
     from package \pkg{Rgraphviz}.}
   \item{amat}{\code{\link{logical}} indicating if the adjacency matrix
     should be printed as well.}
@@ -37,7 +38,7 @@ summary.
 }
 \section{Creation of objects}{
   Objects are typically created as result from
-  \code{\link{skeleton}()} or \code{\link{pc}()}, but could be
+  \code{\link[pcalg]{skeleton}()} or \code{\link[pcalg]{pc}()}, but could be
   be created by calls of the form \code{new("MRPCclass", ...)}.
 }
 
@@ -64,7 +65,7 @@ summary.
     , where the (i, j)th entry contains the 
     maximum p-value of all conditional
     independence tests for edge i--j.}
-    \item{\code{graph}:}{Object of class \code{"\linkS4class{graph}"}:
+    \item{\code{graph}:}{Object of class \code{"\link[graph:graph-class]{graph}"}:
       The undirected or partially directed graph that was estimated.}
     \item{\code{zMin}:}{Deprecated.}
     \item{\code{test}:}{The number of tests that have been performed.}

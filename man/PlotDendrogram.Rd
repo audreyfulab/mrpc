@@ -22,25 +22,25 @@ Adjacency matrix from directed graph
 Minimum module size.
 }
 \item{groupLabels}{
-Argument for \link{plotDendroAndColors}. Labels for the colorings given in colors. The labels will be printed to the left of the color rows in the plot. 
+Argument for \link[WGCNA]{plotDendroAndColors}. Labels for the colorings given in colors. The labels will be printed to the left of the color rows in the plot. 
 }
 \item{dendroLabels}{
-Argument for \link{plotDendroAndColors}. Dendrogram labels. 
+Argument for \link[WGCNA]{plotDendroAndColors}. Dendrogram labels. 
 }
 \item{hclustHang}{
-Argument \code{hang} for \link{plot.hclust}. The fraction of the plot height by which labels should hang below the rest of the plot. 
+Argument \code{hang} for \link[stats]{plot.hclust}. The fraction of the plot height by which labels should hang below the rest of the plot. 
 }
 \item{dendroAddGuide}{
-Argument \code{addGuide} for \link{plotDendroAndColors}. Logical: should vertical "guide lines" be added to the dendrogram plot? The lines make it easier to identify color codes with individual samples. 
+Argument \code{addGuide} for \link[WGCNA]{plotDendroAndColors}. Logical: should vertical "guide lines" be added to the dendrogram plot? The lines make it easier to identify color codes with individual samples. 
 }
 \item{dendroGuideHang}{
-Argument \code{guideHang} for \link{plotDendroAndColors}. The fraction of the dendrogram height to leave between the top end of the guide line and the dendrogram merge height.  
+Argument \code{guideHang} for \link[WGCNA]{plotDendroAndColors}. The fraction of the dendrogram height to leave between the top end of the guide line and the dendrogram merge height.  
 }
 \item{dendroMain}{
-Argument \code{main} for \link{plot.hclust}. Title of the plot.  
+Argument \code{main} for \link[stats]{plot.hclust}. Title of the plot.  
 }
 \item{...}{
-Additional plotting arguments for \link{plotDendroAndColors} and \link{plot.hclust}.  
+Additional plotting arguments for \link[WGCNA]{plotDendroAndColors} and \link[stats]{plot.hclust}.  
 }
 }
 

@@ -1,3 +1,4 @@
+#' @export
 #recall and precision calculation in MRPC
 #Recall = (# edges correctly identified in inferred graph) / (# edges in true graph);
 #Precision = (# edges correctly identified in inferred graph) / (# edges in inferred graph).

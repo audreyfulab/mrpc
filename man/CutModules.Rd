@@ -5,7 +5,7 @@
 Cut a numeric variable into intervals
 }
 \description{
-Similar to \link{cut2} function with some modification.
+Similar to \code{cut2} function from the \code{Hmisc} package with modification.
 }
 \usage{
 CutModules(x, cuts, m, g, levels.mean = FALSE, digits, minmax = TRUE,

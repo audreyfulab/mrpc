@@ -38,7 +38,7 @@ The size of the node labels in points, as a numeric value, a vector of numeric v
 The level of transparency of the edges and nodes. Defaults to 1 (no transparency).
 }
 \item{...}{
-Other arguments passed to \link{ggnet2}.
+Other arguments passed to \link[GGally]{ggnet2}.
 }
 
 }

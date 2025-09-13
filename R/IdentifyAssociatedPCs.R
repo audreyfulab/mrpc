@@ -1,3 +1,4 @@
+#' @export
 # This is the code to identify PCs that are significantly associated with eQTL-gene sets
 
 IdentifyAssociatedPCs <- function (PCs.matrix, no.PCs = 10, data, fdr.level = 0.05, corr.threshold = FALSE, corr.value = 0.3) {

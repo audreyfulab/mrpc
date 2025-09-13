@@ -1,3 +1,5 @@
+#' @importClassesFrom graph graph
+#' @export
 #This is the step 1 of MRPC to draw the undirected graph
 
 ModiSkeleton <- function (data, suffStat, FDR, alpha, indepTest = c("gaussCItest", "disCItest","citest"), labels, p,

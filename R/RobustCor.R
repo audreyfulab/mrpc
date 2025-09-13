@@ -1,3 +1,4 @@
+#' @export
 # This is the function to calculate robust correlation
 
 RobustCor <- function(xx,Beta, plot=FALSE)

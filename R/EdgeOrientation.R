@@ -1,3 +1,5 @@
+#' @importClassesFrom graph graph
+#' @export
 #This is the step 2 of MRPC to direction determination of the undirected edges.
 
 EdgeOrientation <- function (gInput, GV, suffStat, FDR, alpha, indepTest,

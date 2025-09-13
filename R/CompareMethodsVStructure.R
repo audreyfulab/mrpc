@@ -1,3 +1,4 @@
+#' @export
 # Comparison of inference accuracy of different methods on data 
 
 # with and without a v-structure

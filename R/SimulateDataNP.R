@@ -1,3 +1,4 @@
+#' @export
 #Data function no papernt
 
 SimulateDataNP <- function(N, b0.1,sd.1) {

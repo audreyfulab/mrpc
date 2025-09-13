@@ -1,4 +1,4 @@
-
+#' @export
 # Adjust the columns of the input matrix to have
 
 # the same ordering as in the reference matrix

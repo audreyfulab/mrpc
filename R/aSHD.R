@@ -1,3 +1,4 @@
+#' @export
 #The SHD, as is implemented in the R package pcalg (Kalisch et al., 2012) 
 #and bnlearn(Scutari, 2010), counts how many differences exist between two
 #directed graphs. This distance is 1 if an edge exists in one graph but missing

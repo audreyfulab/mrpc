@@ -1,3 +1,4 @@
+#' @export
 # In this code we used the same data set but permute the T nodes 
 
 # to generate multiple permuted data sets and apply the methods 

@@ -4,7 +4,18 @@
 Infer a causal network using the MRPC algorithm
 }
 \description{
-This function is used to infer a causal network (or a causal graph) with directed and undirected edges from observational data. It implements the MRPC (PC with the principle of Mendelian randomization) algorithm described in Badsha and Fu (2019) and Badsha et al.(2021), and the implementation is based on the \link{pc} algorithm in the \code{pcalg} package. The MRPC algorithm contains four major updates over the \link{pc} algorithm: (i) incorporating a sequential testing method to control the False Discovery Rate (FDR), (ii) improved v-structure identification; (iii) allowing for calculation of robust correlation to reduce the impact of outliers, and (iv) a new procedure for edge orientation based on the principle of Mendelian randomization (PMR) (Badsha and Fu, 2019; Badsha et al., 2021). See details below. 
+This function is used to infer a causal network (or a causal graph) 
+with directed and undirected edges from observational data. It implements 
+the MRPC (PC with the principle of Mendelian randomization) algorithm 
+described in Badsha and Fu (2019), Badsha et al.(2021) and Kvamme and Badsha et al.(2025), 
+and the implementation is based on the \code{pc} algorithm in the \code{pcalg} 
+package. The MRPC algorithm contains four major updates over the \code{pc} 
+algorithm: (i) incorporating two sequential testing methods to control the 
+False Discovery Rate (FDR), (ii) improved v-structure identification; 
+(iii) allowing for calculation of robust correlation to reduce the impact 
+of outliers, and (iv) a new procedure for edge orientation based on the 
+principle of Mendelian randomization (PMR) (Badsha and Fu, 2019; Badsha 
+et al., 2021). See details below. 
 
 }
 \usage{
@@ -14,34 +25,63 @@ MRPC(data, suffStat, GV, FDR = 0.05, alpha = 0.05, indepTest, labels, p,
 }
 
 \arguments{
-This function is based on the \link{pc} function in the \code{pcalg} package. Therefore, many arguments are similar to those in \link{pc}.
+This function is based on the \code{pc} function in the \code{pcalg} package. 
+Therefore, many arguments are similar to those in \code{pc}.
 
 \item{data}{
-Data matrix, where the rows are observations and the columns are features (i.e., variables, or nodes). If genetic variants (GVs) are included, then the columns start from GVs (e.g., single-nucleotide polymorphisms, or SNPs; insertions and deletions, or indels; copy number variation, or CNVs; and expression quantitative trait loci, or eQTLs to genes), and followed by phenotypes (e.g., gene expression). For example, if the data contains one GV, then the first column of the input matrix is the GV and the remaining columns are the gene expression data.
+Data matrix, where the rows are observations and the columns are features 
+(i.e., variables, or nodes). If genetic variants (GVs) are included, then 
+the columns start from GVs (e.g., single-nucleotide polymorphisms, or SNPs; 
+insertions and deletions, or indels; copy number variation, or CNVs; and 
+expression quantitative trait loci, or eQTLs to genes), and followed by 
+phenotypes (e.g., gene expression). For example, if the data contains one 
+GV, then the first column of the input matrix is the GV and the remaining 
+columns are the gene expression data.
 }
 
-\item{suffStat}{A list of sufficient statistics. When the data is continuous or can be viewed as continuous, this list contains the correlation matrix of the data and the sample size, which are the necessary elements for the conditional independence tests in gaussCItest. When the data is discrete, this list contains the entire dataset.
+\item{suffStat}{A list of sufficient statistics. When the data is continuous 
+or can be viewed as continuous, this list contains the correlation matrix of 
+the data and the sample size, which are the necessary elements for the conditional 
+independence tests in gaussCItest. When the data is discrete, this list contains 
+the entire dataset.
 } 
 
-\item{GV}{The number of genetic variants (SNPs/indels/CNV/eQTLs) in the input data matrix. For example, if the data has one variant, which is in the first column, then GV = 1. If there are two variants, which are in the first and second Columns, then GV = 2. If there are no variants, then GV = 0.
+\item{GV}{The number of genetic variants (SNPs/indels/CNV/eQTLs) in the input 
+data matrix. For example, if the data has one variant, which is in the first 
+column, then GV = 1. If there are two variants, which are in the first and second 
+Columns, then GV = 2. If there are no variants, then GV = 0.
 }
 
 \item{FDR}{Need to specify the desired level of the overall false discovery rate. 
 }
 \item{alpha}{A scalar in [0,1]. The type I error rate for each individual test.}
     
-\item{indepTest}{A \link{function} for testing conditional independence. It is used to test the conditional independence of x and y given S, called as indepTest(x, y, S, suffStat). Where, x and y are variables, and S is a vector, possibly empty, of variables. suffStat is a list, see the argument above. The return value of indepTest is the p-value of the test for conditional independence. The different indepTest is used for different data types, for example, Gaussian data = gaussCItest, Discrete data = disCItest and Binary data = binCItest. See help(gaussCItest)
+\item{indepTest}{Name of the function for testing conditional independence. 
+Possible values are: \link[pcalg]{gaussCItest} for Gaussian data, 
+\link[pcalg]{disCItest} for discrete data, and 
+\link[pcalg]{binCItest} for binary data. For example: indepTest = 'gaussCItest'. 
+This argument is used to 
+test the conditional independence of x and y given S, and has the following syntax: 
+\code{indepTest(x, y, S, suffStat)}. Here, x and y are variables, and S is a vector, 
+possibly empty, of variables, and suffStat is a list (see the argument above). 
+The p-value returned by the chosen test is used for testing the null hypothesis 
+of conditional independence. 
 
-The \link{ci.test} (Marco Scutari, 2010) is also used for testing conditional independence and return value of indepTest is the p-value. If none is specified, the default test statistic is the mutual information for categorical variables, the Jonckheere-Terpstra test for ordered factors and the linear correlation for continuous variables.See help(ci.test)
-
-Remember that need to specify the which indepTest would like for independence testing. For example, if you would like to use gaussCItest you would type indepTest = 'gaussCItest' into the function otherwise indepTest = 'citest'. Note that, we used \link{gaussCItest} to compare our \link{MRPC} with the existing \link{pc}, because of \link{ci.test} is not robust. See details in example.
+The function \link[bnlearn]{ci.test} (Marco Scutari, 2010) can also be provided 
+as an argument here. The 
+default test statistic is the mutual information for categorical variables, the 
+Jonckheere-Terpstra test for ordered factors, and the linear correlation for 
+continuous variables. Note that this test may not be robust.
 }
 
 \item{labels}{A character vector of variable, or node, names. All variables are denoted in column in the input matrix.}
 
 \item{p}{(optional) The number of variables, or nodes. May be specified if the labels are not provided, in which case the labels are set to 1:p.}
 
-\item{FDRcontrol}{A character string specifying whether online FDR control should be applied, and if so, what method to use. The two FDR control options are "LOND" (Javanmard and Montanari, 2015) or "ADDIS" (Tian and Ramdas, 2019). If "NONE" is specified, the type I error rate "alpha" will be used for each test.}
+\item{FDRcontrol}{A character string specifying whether online FDR control 
+should be applied, and if so, what method to use. The two FDR control options 
+are "LOND" (Javanmard and Montanari, 2015) or "ADDIS" (Tian and Ramdas, 2019). 
+If "NONE" is specified, the type I error rate "alpha" will be used for each test.}
 
 \item{tau}{(optional) A scalar between 0 and 1. This value is used to determine if a p-value will be considered for testing, when FDRcontrol="ADDIS". For example, if a p-value is greater than tau then it is discarded and no test will be performed.}
 
@@ -51,11 +91,23 @@ Remember that need to specify the which indepTest would like for independence te
 
 }
 \details{
-The PC algorithm is computationally efficient for learning a directed acyclic graph (Spirtes et al., 2000).  Several variants of the original PC algorithms are available (Kalisch and Buhlmann, 2007; Kalisch et al., 2012). Similar to these PC-like algorithms, our MRPC algorithm also contains two main steps:
+The PC algorithm is computationally efficient for learning a directed acyclic graph 
+(Spirtes et al., 2000).  Several variants of the original PC algorithms are available 
+(Kalisch and Buhlmann, 2007; Kalisch et al., 2012). Similar to these PC-like algorithms, 
+our MRPC algorithm also contains two main steps:
     
-\bold{Step-1}: Inference of the graph skeleton.  A graph skeleton is an undirected graph with edges that are supported by the data.  Similar to existing PC-like algorithms, we perform statistical tests for marginal and conditional independence tests.  If the null hypothesis of independence is not rejected, then the corresponding edge is removed and never tested again.  
+\bold{Step-1}: Inference of the graph skeleton.  A graph skeleton is an undirected graph 
+with edges that are supported by the data.  Similar to existing PC-like algorithms, we 
+perform statistical tests for marginal and conditional independence tests.  If the null 
+hypothesis of independence is not rejected, then the corresponding edge is removed and 
+never tested again.  
     
-However, unlike existing algorithms, which control only the type I error rate for each individual test, MRPC implements the LOND (Level On the Number of Discoveries) method (Javanmard and Montanari, 2015), which is a sequential hypothesis testing procedure and sets the significance level for each test based on the number of discoveries (i.e., rejections), to control the overall false discovery rate (FDR).  See \link{ModiSkeleton}.
+However, unlike existing algorithms, which control only the type I error rate for each 
+individual test, MRPC implements two FDR control methods in this sequential (or online) testing 
+setting: the LOND (Level On the Number of Discoveries) method 
+(Javanmard and Montanari, 2015), which sets the significance level for each test based 
+on the number of discoveries (i.e., rejections); and the ADaptive
+DIScarding (ADDIS) method, which is less conservative than LOND.  See \link{ModiSkeleton}.
     
 Genome data may have outliers that drastically alter the topology of the inferred graph. MRPC allows for the estimate of robust correlation, which may be the substitute of the Pearson correlation as the input to graph inference (Badsha et al., 2013).    
 
@@ -95,7 +147,7 @@ An object of \link{class} that contains an estimate of the equivalence class of 
     , where the (i, j)th entry contains the 
     maximal p-value of all conditional
     independence tests for edge i--j.}
-    \item{\code{graph}:}{Object of class \code{"\linkS4class{graph}"}:
+    \item{\code{graph}:}{Object of class \code{"\link[graph:graph-class]{graph}"}:
       the undirected or partially directed graph that was estimated.}
           \item{\code{zMin}:}{Deprecated.}
     \item{\code{test}:}{The number of tests that have been performed.}
@@ -118,7 +170,7 @@ An object of \link{class} that contains an estimate of the equivalence class of 
 }
 
 \author{
-Md Bahadur Badsha (mbbadshar@gmail.com)
+Md Bahadur Badsha (mbbadshar@gmail.com), Evan A Martin, Audrey Qiuyan Fu.
 }
 
 \references{
@@ -134,11 +186,13 @@ Md Bahadur Badsha (mbbadshar@gmail.com)
 
 6. Kalisch M, Machler M, Colombo D, Maathuis MH and Buhlmann P (2012). Causal Inference Using Graphical Models with the R Package pcalg. Journal of Statistical Software, 47, 26.
 
-7. Scutari M (2010). Learning Bayesian Networks with the bnlearn R Package. Journal of Statistical Software, 35(3), 1-22.
+7. Kvamme, J., Badsha, M. B., Martin, E. A., Wu, J., Wang, X., & Fu, A. Q. (2025). Causal network inference of cis-and trans-gene regulation of expression quantitative trait loci across human tissues. Genetics, 230(2), iyaf064.
 
-8. Spirtes P, Glymour C and Scheines R (2000). Causation, Prediction, and Search, 2nd edition. The MIT Press.
+8. Scutari M (2010). Learning Bayesian Networks with the bnlearn R Package. Journal of Statistical Software, 35(3), 1-22.
 
-9. Tian J and Ramdas A (2019). ADDIS: an adaptive discarding algorithm for online FDR control with conservative nulls. In Advances in Neural Information Processing Systems (pp. 9388-9396).
+9. Spirtes P, Glymour C and Scheines R (2000). Causation, Prediction, and Search, 2nd edition. The MIT Press.
+
+10. Tian J and Ramdas A (2019). ADDIS: an adaptive discarding algorithm for online FDR control with conservative nulls. In Advances in Neural Information Processing Systems (pp. 9388-9396).
 }
                     
 \seealso{
@@ -160,7 +214,6 @@ library(bnlearn)  # pc.stable, mmpc, mmhc and hc
 ####################################-->    
 # Load simulated data
 # Model 1 (mediation)
-Truth <- MRPCtruth$M1   # Truth for model 1
 
 # The 1st column of the data matrix is a genetic variant
 # and the remaining columns are gene expression nodes.
@@ -182,7 +235,22 @@ MRPC.fit <- MRPC(data,
                 labels = V,
                 FDRcontrol = 'LOND',
                 verbose = FALSE)
+                
+# Look at a summary of MRPC.fit
+summary (MRPC.fit)
 
+# Plot the inferred graph
+plot (MRPC.fit)
+
+# Extract the inferred adjacency matrix
+MRPC.adj <- as(MRPC.fit@graph, "matrix")
+print(MRPC.adj)
+
+# Compare with truth
+Truth <- MRPCtruth$M1   # Truth for model 1
+plot (Truth, main="truth")
+
+# Compare with other methods
 # Infer the graph by pc
 pc.fit <- pc(suffStat = suffStat_C,
              indepTest = gaussCItest,
